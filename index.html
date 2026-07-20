@@ -404,6 +404,13 @@
                 let opt = document.createElement("option");
                 opt.value = dateString;
                 opt.textContent = dateString;
+
+                // Add a hidden helper attribute to easily track the exact year/month/day
+                let year = targetDate.getFullYear();
+                let month = String(targetDate.getMonth() + 1).padStart(2, '0');
+                let day = String(targetDate.getDate()).padStart(2, '0');
+                opt.setAttribute("data-iso", `${year}-${month}-${day}`);
+
                 datePicker.appendChild(opt);
             }
 
@@ -427,14 +434,46 @@
     	            "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM"
                 ];
 
+                // REPLACE WITH THIS:
+                const selectedOption = datePicker.options[datePicker.selectedIndex];
+                const chosenIsoDate = selectedOption.getAttribute("data-iso");
+
                 timeSlots.forEach(slot => {
                     let btn = document.createElement("button");
                     btn.type = "button";
                     btn.className = "p-2 bg-slate-900 border border-slate-800 hover:border-emerald-500 rounded-lg text-xs font-semibold text-center text-slate-300 transition-all cursor-pointer focus:bg-emerald-950 focus:border-emerald-400 focus:text-white";
-                    btn.textContent = slot;
+    
+                    // --- TIMEZONE CONVERSION ENGINE ---
+                    // 1. Break down the ET slot string (e.g. "11:30 AM") into 24-hour integers
+                    let [time, modifier] = slot.split(" ");
+                    let [hh, mm] = time.split(":");
+                    let hour = parseInt(hh, 10);
+                    if (modifier === "PM" && hour !== 12) hour += 12;
+                    if (modifier === "AM" && hour === 12) hour = 0;
+                    let hhStr = String(hour).padStart(2, '0');
+
+                    // 2. Create a Date object hardcoded to the New York offset (-04:00 for Summer Daylight Savings)
+                    let etMoment = new Date(`${chosenIsoDate}T${hhStr}:${mm}:00-04:00`);
+    
+                    // 3. Extract the user's local equivalent time text string from their browser
+                    let localTimeStr = etMoment.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    // 4. Check if the user is already located in the Eastern Time zone
+                    let userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                    let isEastern = userTimeZone.includes("New_York") || userTimeZone.includes("Eastern");
+
+                    // 5. Label the button dynamically based on their location
+                    if (isEastern) {
+                        btn.textContent = `${slot} EST`;
+                    } else {
+                        btn.textContent = `${slot} EST (${localTimeStr} Local)`;
+                    }
+                    // ----------------------------------
+
                     btn.addEventListener("click", function() {
+                        // Keep the saved value clean so the backend can log it safely
                         chosenTimeBlock = `${datePicker.value} @ ${slot}`;
-                        document.getElementById("summary-text").textContent = chosenTimeBlock;
+                        document.getElementById("summary-text").textContent = `${datePicker.value} @ ${slot} EST / New York Time`;
                         summaryCard.classList.remove("hidden");
                     });
                     container.appendChild(btn);
