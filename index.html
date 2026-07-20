@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Services Pro - Strategy Session Calendar Booking</title>
+    <!-- Tailwind CSS Engine -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '764970315154958');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=764970315154958&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center py-12 px-4 font-sans">
+
+    <!-- Funnel Wrapper -->
+    <div class="w-full max-w-2xl bg-slate-900 rounded-2xl shadow-2xl border border-slate-800 p-6 md:p-10 transition-all duration-300">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-8 border-b border-slate-800 pb-6">
+            <h1 class="text-3xl font-black text-blue-500 tracking-tight">Web Services Pro</h1>
+            <p class="text-slate-400 mt-1 text-xs uppercase font-bold tracking-widest">Book a Time on Our Calendar</p>
+        </header>
+
+        <!-- ========================================== -->
+        <!-- STEP 1: PRE-QUALIFICATION APPLICATION FORM -->
+        <!-- ========================================== -->
+        <div id="step-quiz" class="space-y-6">
+            <div class="border-l-4 border-blue-500 pl-3">
+                <h2 class="text-xl font-bold text-slate-200">Step 1: Complete Your Profile</h2>
+                <p class="text-slate-400 text-xs mt-0.5">All Questions Required</p>
+            </div>
+
+            <form id="funnel-form" class="space-y-6">
+                <!-- Core Demographics Group -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Full Name *</label>
+                        <input type="text" id="name" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Email *</label>
+                        <input type="email" id="email" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Phone Number *</label>
+                        <input type="tel" id="phone" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+                    </div>
+                </div>
+
+                <!-- Q1 -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-1.5">1) Current Business Location (city and state) of your Service Area? *</label>
+                    <input type="text" id="q1" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500">
+                </div>
+
+                <!-- Q2 -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-1.5">2) Your niche/industry? (roofing, landscaping, remodeling, hvac, etc) *</label>
+                    <input type="text" id="q2" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500">
+                </div>
+
+                <!-- Q3 -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-1.5">3) Please provide your company website, or facebook business page. *</label>
+                    <p class="text-xs text-slate-400 mb-2 italic">If you don't have one, please do not schedule a call.</p>
+                    <input type="text" id="q3" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500" placeholder="https://...">
+                </div>
+
+                <!-- Q4 (Disqualifier Check) -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-1.5">4) How many years has your brand been in active business? *</label>
+                    <input type="number" id="q4" required min="0" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500" placeholder="e.g., 5">
+                </div>
+
+                <!-- Q5 -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-2">5) What are the current business obstacles/problems you need help to solve now, that prompted you to book this call? * (Select all that apply)</label>
+                    <div class="space-y-2 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q5" value="we miss a lot of leads/calls slipping through" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>we miss a lot of leads/calls slipping through</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q5" value="leaking revenue with old unsold leads or low website conversions (visit website and bounce)" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>leaking revenue with old unsold leads or low website conversions (visit website and bounce)</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q5" value="sales team can't keep up/inefficient manual processes" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>sales team can't keep up/inefficient manual processes</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q5" value="thinning margins" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>thinning margins</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q5" value="just want help expanding" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>just want help expanding</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q5" value="other" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>other</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Q6 (Disqualifier Check) -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-2">6) What is the average *lifetime value* for each new client/customer to your business? *</label>
+                    <div class="space-y-2 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <label class="flex items-center space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q6" value="Under $1,000" required class="border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Under $1,000</span>
+                        </label>
+                        <label class="flex items-center space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q6" value="$1,001-$5,000" class="border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>$1,001 - $5,000</span>
+                        </label>
+                        <label class="flex items-center space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q6" value="$5,001-$10,000" class="border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>$5,001 - $10,000</span>
+                        </label>
+                        <label class="flex items-center space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q6" value="$10,001+" class="border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>$10,001+</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Q7 (Disqualifier Check) -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-1">7) What is your average "closing ratio" (percentage)? *</label>
+                    <p class="text-xs text-slate-400 mb-2">(Example: A closing ratio of 50% means, for every 2 qualified sales appointments you complete, your sales team is able to convert 1 of them into a paid invoice).</p>
+                    <input type="number" id="q7" required min="0" max="100" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-blue-500" placeholder="e.g., 35">
+                </div>
+
+                <!-- Q8 (Disqualifier Check) -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-2">8) What type of marketing does your business currently use to bring in new clients? * (Select all that apply)</label>
+                    <div class="space-y-2 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="Google/YouTube Paid Ads" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Google/YouTube Paid Ads</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="Facebook Paid Ads" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Facebook/Meta Paid Ads</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="Other Social Media Paid Ads" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Other Social Media Paid Ads (Tiktok, etc)</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="Organic Social Media" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Organic (Non-Paid) Social Media</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="GBP/Google Maps" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>GBP/Google-My-Business (Ranking in Google Maps)</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="Organic SEO" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Organic SEO (Ranking Websites and Videos)</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="Referrals" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Referrals/Word of Mouth</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="Database Reactivation" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Database Reactivation (following up with old leads/contacts)</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="Mailers" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Sending Mailers (e.g. Coupons) to local residents</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="Other" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Other</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="checkbox" name="q8" value="We Don't Pay for Marketing" class="mt-1 rounded border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>We Don't Pay for Marketing</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Q9 (Disqualifier Check) -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-2">9) Are you the primary decision maker for your business marketing decisions? *</label>
+                    <div class="space-y-2 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q9" value="Yes, I'm the only decision maker" required class="mt-1 border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Yes, I'm the only decision maker</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q9" value="Yes, I'm one of the decision makers, and all decision makers will be on the call" class="mt-1 border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Yes, I'm one of the decision makers, and all decision makers will be on the call</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q9" value="Yes, I'm the decision maker, but other decision makers will not attend the call" class="mt-1 border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>Yes, I'm the decision maker, but other decision makers will not attend the call</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q9" value="No, I'm not the decision maker" class="mt-1 border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>No, I'm not the decision maker</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Q10 -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-1.5">10) What are you most looking forward to gain/learn from this phone call, and how can we make this call valuable to you? *</label>
+                    <textarea id="q10" required rows="3" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-blue-500"></textarea>
+                </div>
+
+                <!-- Q11 (Disqualifier Check) -->
+                <div>
+                    <label class="block text-sm font-semibold text-slate-200 mb-2">11) If you decide to move forward, your most likely choice and preference is: *</label>
+                    <div class="space-y-2 bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q11" value="DFY" required class="mt-1 border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span><strong>DFY:</strong> I solve your pain points <em>for</em> you (you don't lift a finger)</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q11" value="DWY" class="mt-1 border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span><strong>DWY:</strong> I solve your pain points <em>with</em> you as partners, we share in duties and net profits</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q11" value="DIY" class="mt-1 border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span><strong>DIY:</strong> I teach you how to solve it and you implement yourself</span>
+                        </label>
+                        <label class="flex items-start space-x-3 text-slate-300 text-sm cursor-pointer">
+                            <input type="radio" name="q11" value="None of these" class="mt-1 border-slate-700 text-blue-500 bg-slate-800 focus:ring-0">
+                            <span>None of these</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-xl transition-all transform hover:-translate-y-0.5 tracking-wide cursor-pointer text-sm">
+                    Go to Step 2 &rarr;
+                </button>
+            </form>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- STEP 2: LIVE CALENDAR INTERACTIVE PORTAL   -->
+        <!-- ========================================== -->
+        <div id="step-calendar" class="space-y-6 hidden">
+            <div class="border-l-4 border-emerald-500 pl-3">
+                <h2 class="text-xl font-bold text-slate-200">Step 2: Reserve Strategy Session Time</h2>
+                <p class="text-slate-400 text-xs mt-0.5">Operational Booking Limit: Max 5 Days To Future (America/New_York)</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">1. Select Target Date</label>
+                    <select id="date-picker" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-sm focus:outline-none focus:border-emerald-500 text-white"></select>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">2. Select Open Time Block</label>
+                    <div id="time-picker-container" class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto p-2 bg-slate-950 border border-slate-800 rounded-lg">
+                        <p class="text-slate-500 text-xs col-span-2 text-center py-6">Choose an active calendar date first...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-950 p-4 border border-slate-800 rounded-xl hidden id="selection-summary"">
+                <p class="text-xs text-slate-400">Selected Time Slot:</p>
+                <p id="summary-text" class="text-sm font-bold text-emerald-400 mt-0.5"></p>
+            </div>
+
+            <button id="btn-confirm-booking" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-xl shadow-xl transition-all transform hover:-translate-y-0.5 tracking-wide cursor-pointer text-sm">
+                Confirm & Secure Strategy Session
+            </button>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- STEP 3: DISQUALIFIED FALLBACK VIEW         -->
+        <!-- ========================================== -->
+        <div id="step-disqualified" class="text-center py-12 space-y-5 hidden">
+            <div class="text-amber-500 text-5xl">⚠️</div>
+            <h2 class="text-2xl font-black text-slate-100">Not A Fit</h2>
+            <p class="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
+                Thank you for your interest in Web Services Pro. Based on your answers, our services don't quite match what your business needs at the moment.
+            </p>
+            <div class="pt-4">
+                <button onclick="window.location.reload();" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition-all cursor-pointer">
+                    &larr; Review Your Answers
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FUNNEL LOGIC ENGINE                        -->
+    <!-- ========================================== -->
+    <script>
+        // Global variables state storage 
+        let leadProfile = {};
+        let chosenTimeBlock = "";
+
+        // Webhook Configuration Placeholder
+        const DATA_ROUTING_WEBHOOK = "https://script.google.com/macros/s/AKfycbyfyCVSL-XGh1Z4ZIv172d4eiPMRi4IuOzfRljU8kGLl5GoCIlwNqf1rJCVkL1lPf9D/exec"; 
+
+        document.getElementById("funnel-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            // 1. Gather checkbox list arrays
+            const checkedObstacles = Array.from(document.querySelectorAll('input[name="q5"]:checked')).map(el => el.value);
+            const checkedMarketing = Array.from(document.querySelectorAll('input[name="q8"]:checked')).map(el => el.value);
+            
+            // Gather radio fields
+            const q6_value = document.querySelector('input[name="q6"]:checked')?.value;
+            const q9_value = document.querySelector('input[name="q9"]:checked')?.value;
+            const q11_value = document.querySelector('input[name="q11"]:checked')?.value;
+
+            // Map layout model data tracking payload
+            leadProfile = {
+                name: document.getElementById("name").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                phone: document.getElementById("phone").value.trim(),
+                q1_location: document.getElementById("q1").value.trim(),
+                q2_niche: document.getElementById("q2").value.trim(),
+                q3_website: document.getElementById("q3").value.trim(),
+                q4_years: parseFloat(document.getElementById("q4").value),
+                q5_obstacles: checkedObstacles.join(", "),
+                q6_ltv: q6_value,
+                q7_ratio: parseFloat(document.getElementById("q7").value),
+                q8_marketing: checkedMarketing,
+                q9_decision: q9_value,
+                q10_expectations: document.getElementById("q10").value.trim(),
+                q11_preference: q11_value
+            };
+
+            // 2. RUN QUALIFICATION ENGINE 
+            if (leadProfile.q4_years < 4) return triggerDisqualification();
+            if (leadProfile.q6_ltv === "Under $1,000") return triggerDisqualification();
+            if (leadProfile.q7_ratio < 25) return triggerDisqualification();
+            if (checkedMarketing.includes("We Don't Pay for Marketing")) return triggerDisqualification();
+            if (leadProfile.q9_decision === "No, I'm not the decision maker") return triggerDisqualification();
+            if (leadProfile.q11_preference === "None of these") return triggerDisqualification();
+
+            // If user passes filters, execute Meta conversion tracking milestone
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead', { value: 0.00, currency: 'USD' });
+            }
+
+            // Route user forward to calendar layout section
+            showStep("step-calendar");
+            buildDynamicCalendar();
+        });
+
+        function triggerDisqualification() {
+            showStep("step-disqualified");
+        }
+
+        function showStep(stepId) {
+            document.getElementById("step-quiz").classList.add("hidden");
+            document.getElementById("step-calendar").classList.add("hidden");
+            document.getElementById("step-disqualified").classList.add("hidden");
+            document.getElementById(stepId).classList.remove("hidden");
+        }
+
+        // Generate clean 5-day horizon operational window calendar slots
+        function buildDynamicCalendar() {
+            const datePicker = document.getElementById("date-picker");
+            datePicker.innerHTML = '<option value="">-- Choose Target Date --</option>';
+
+            const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            // Calculate operational delay horizon window (24 hours minimum notice)
+            let baseDate = new Date();
+            baseDate.setDate(baseDate.getDate() + 1); 
+
+            for (let i = 0; i < 5; i++) {
+                let targetDate = new Date(baseDate);
+                targetDate.setDate(baseDate.getDate() + i);
+
+                // Skip weekend operational limits
+                if (targetDate.getDay() === 0 || targetDate.getDay() === 5) continue;
+
+                let dateString = `${daysOfWeek[targetDate.getDay()]}, ${months[targetDate.getMonth()]} ${targetDate.getDate()}`;
+                let opt = document.createElement("option");
+                opt.value = dateString;
+                opt.textContent = dateString;
+                datePicker.appendChild(opt);
+            }
+
+            datePicker.addEventListener("change", function() {
+                const container = document.getElementById("time-picker-container");
+                const summaryCard = document.getElementById("selection-summary");
+                summaryCard.classList.add("hidden");
+                chosenTimeBlock = "";
+
+                if (!this.value) {
+                    container.innerHTML = '<p class="text-slate-500 text-xs col-span-2 text-center py-6">Choose an active calendar date first...</p>';
+                    return;
+                }
+
+                container.innerHTML = "";
+                // Generate standardized 11 AM - 7 PM operational blocks
+                const timeSlots = [
+    	            "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM",
+   	              "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
+    	            "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM",
+    	            "05:00 PM", "05:30 PM", "06:00 PM", "06:30 PM"
+                ];
+
+                timeSlots.forEach(slot => {
+                    let btn = document.createElement("button");
+                    btn.type = "button";
+                    btn.className = "p-2 bg-slate-900 border border-slate-800 hover:border-emerald-500 rounded-lg text-xs font-semibold text-center text-slate-300 transition-all cursor-pointer focus:bg-emerald-950 focus:border-emerald-400 focus:text-white";
+                    btn.textContent = slot;
+                    btn.addEventListener("click", function() {
+                        chosenTimeBlock = `${datePicker.value} @ ${slot}`;
+                        document.getElementById("summary-text").textContent = chosenTimeBlock;
+                        summaryCard.classList.remove("hidden");
+                    });
+                    container.appendChild(btn);
+                });
+            });
+        }
+
+        // Complete final checkout booking block execution routing
+        document.getElementById("btn-confirm-booking").addEventListener("click", async function() {
+            if (!chosenTimeBlock) {
+                alert("Please select an available time block before confirming.");
+                return;
+            }
+
+            leadProfile.scheduled_slot = chosenTimeBlock;
+
+            // Trigger fallback routing to safe data endpoint if configured
+            if (DATA_ROUTING_WEBHOOK !== "https://script.google.com/macros/s/AKfycbyfyCVSL-XGh1Z4ZIv172d4eiPMRi4IuOzfRljU8kGLl5GoCIlwNqf1rJCVkL1lPf9D/exec") {
+                try {
+                    await fetch(DATA_ROUTING_WEBHOOK, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(leadProfile)
+                    });
+                } catch (err) {
+                    console.error("Payload routing anomaly reported: ", err);
+                }
+            }
+
+            // Direct route redirect execution to target landing frame
+            window.location.href = "https://booked.webservicespro.co/";
+        });
+    </script>
+</body>
+</html>
